@@ -14,11 +14,15 @@ const Modal = ({ isActive, onClick, message }) => {
   return (
     <Fragment>
       <div className={modalClass}>
-        <div className={styles.ModalTitle}>{title}</div>
-        <div className={styles.ModalMessage}>{msg}</div>
-        <div className={styles.ModalButtonArea}>
-          <button onClick={onClick}>Close</button>
-        </div>
+        {isActive && (
+          <Fragment>
+            <div className={styles.ModalTitle}>{title}</div>
+            <div className={styles.ModalMessage}>{msg}</div>
+            <div className={styles.ModalButtonArea}>
+              <button onClick={onClick}>Close</button>
+            </div>
+          </Fragment>
+        )}
       </div>
       {isActive && <Backdrop onClick={onClick} />}
     </Fragment>
