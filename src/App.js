@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css';
+import styles from './App.module.css';
 import Modal from './components/Modal/Modal';
 import UserForm from './components/userform/UserForm';
 import UsersList from './components/UsersList/UsersList';
@@ -32,7 +32,7 @@ const App = () => {
   };
 
   return (
-    <div className='container'>
+    <div className={styles.container}>
       <UserForm onSubmit={handleSubmit} />
       <UsersList userslist={users} onDelete={handleDelete} />
       <Modal isActive={activeModal} message={message} onClick={closeModal} />
