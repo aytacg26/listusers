@@ -1,11 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import styles from './UserForm.module.css';
+import { validateData } from '../../../utils/helpers';
 
 const UserForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({ username: '', age: '' });
   const { username, age } = formData;
-  const ageInput = useRef();
-  const usernameInput = useRef();
 
   const handleUserInput = (e) => {
     const { name, value } = e.target;
@@ -16,61 +15,13 @@ const UserForm = ({ onSubmit }) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    if (username.trim().length > 0 && parseInt(age)) {
-      if (parseInt(age) > 0 && parseInt(age) <= 125) {
-        const userId = `user-${Math.ceil(Math.random() * 1000)}-${Math.ceil(
-          Math.random() * 25000
-        )}-${username}`;
+    const { user, hasError, error } = validateData(formData);
 
-        const revisedData = { id: userId, ...formData };
-
-        onSubmit({ user: revisedData, hasError: false, error: {} });
-        setFormData({ username: '', age: '' });
-      } else {
-        onSubmit({
-          user: null,
-          hasError: true,
-          error: {
-            title: 'Age Error!',
-            msg: 'Age must be higher than 0 and less than or equal to 125',
-          },
-        });
-      }
-    } else {
-      let error = { title: '', msg: '' };
-
-      if (username.trim().length === 0 && (!age || !parseInt(age))) {
-        error = {
-          title: 'Username and age is required',
-          msg: 'Please enter a valid username and age',
-        };
-      } else if (!username || username.trim().length === 0) {
-        console.log('Please enter a username');
-        error = {
-          title: 'Username is required',
-          msg: 'Please enter a valid username',
-        };
-        usernameInput.current.focus();
-      } else if (!age || !parseInt(age)) {
-        error = {
-          title: 'Age is required',
-          msg: 'Please enter a valid age',
-        };
-
-        ageInput.current.focus();
-      } else {
-        error = {
-          title: 'Not Valid',
-          msg: 'Please enter valid data.',
-        };
-      }
-
-      onSubmit({
-        user: null,
-        hasError: true,
-        error,
-      });
+    if (!hasError) {
+      setFormData({ username: '', age: '' });
     }
+
+    onSubmit({ user, hasError, error });
   };
 
   return (
@@ -84,7 +35,6 @@ const UserForm = ({ onSubmit }) => {
           name='username'
           onChange={handleUserInput}
           autoComplete='off'
-          ref={usernameInput}
         />
       </div>
       <div className={styles.inputGroup}>
@@ -96,7 +46,6 @@ const UserForm = ({ onSubmit }) => {
           name='age'
           onChange={handleUserInput}
           autoComplete='off'
-          ref={ageInput}
         />
       </div>
       <button>Add User</button>
