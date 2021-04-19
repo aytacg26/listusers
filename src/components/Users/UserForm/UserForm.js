@@ -58,6 +58,11 @@ const UserForm = ({ onSubmit }) => {
         };
 
         ageInput.current.focus();
+      } else {
+        error = {
+          title: 'Not Valid',
+          msg: 'Please enter valid data.',
+        };
       }
 
       onSubmit({
