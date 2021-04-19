@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './App.module.css';
 import Modal from './components/Modal/Modal';
-import UserForm from './components/userform/UserForm';
+import UserForm from './components/Users/UserForm/UserForm';
 import UsersList from './components/UsersList/UsersList';
 
 const App = () => {
