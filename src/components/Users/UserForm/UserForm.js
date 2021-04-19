@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './UserForm.module.css';
 import { validateData } from '../../../utils/helpers';
+import PropTypes from 'prop-types';
 
 const UserForm = ({ onSubmit }) => {
   const [formData, setFormData] = useState({ username: '', age: '' });
@@ -51,6 +52,10 @@ const UserForm = ({ onSubmit }) => {
       <button>Add User</button>
     </form>
   );
+};
+
+UserForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default UserForm;

@@ -1,6 +1,7 @@
 import React from 'react';
 import UserItem from '../UserItem/UserItem';
 import styles from './UsersList.module.css';
+import PropTypes from 'prop-types';
 
 const UsersList = ({ userslist, onDelete }) => {
   if (userslist.length === 0) {
@@ -19,6 +20,11 @@ const UsersList = ({ userslist, onDelete }) => {
       ))}
     </div>
   );
+};
+
+UsersList.propTypes = {
+  userslist: PropTypes.array.isRequired,
+  onDelete: PropTypes.func,
 };
 
 export default UsersList;

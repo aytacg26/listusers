@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import Backdrop from './Backdrop';
 import styles from './Modal.module.css';
+import PropTypes from 'prop-types';
 
 const Modal = ({ isActive, onClick, message }) => {
   const modalClass = `${styles.Modal} ${isActive && styles.active}`;
@@ -27,6 +28,12 @@ const Modal = ({ isActive, onClick, message }) => {
       {isActive && <Backdrop onClick={onClick} />}
     </Fragment>
   );
+};
+
+Modal.propTypes = {
+  isActive: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  message: PropTypes.object.isRequired,
 };
 
 export default Modal;
