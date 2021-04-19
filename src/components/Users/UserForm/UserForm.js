@@ -16,7 +16,7 @@ const UserForm = ({ onSubmit }) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    if (username && parseInt(age)) {
+    if (username.trim().length > 0 && parseInt(age)) {
       if (parseInt(age) > 0 && parseInt(age) <= 125) {
         const userId = `user-${Math.ceil(Math.random() * 1000)}-${Math.ceil(
           Math.random() * 25000
@@ -39,12 +39,12 @@ const UserForm = ({ onSubmit }) => {
     } else {
       let error = { title: '', msg: '' };
 
-      if (!username && (!age || !parseInt(age))) {
+      if (username.trim().length === 0 && (!age || !parseInt(age))) {
         error = {
           title: 'Username and age is required',
           msg: 'Please enter a valid username and age',
         };
-      } else if (!username) {
+      } else if (!username || username.trim().length === 0) {
         console.log('Please enter a username');
         error = {
           title: 'Username is required',
