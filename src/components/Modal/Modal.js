@@ -1,7 +1,8 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Backdrop from './Backdrop';
 import styles from './Modal.module.css';
 import PropTypes from 'prop-types';
+import GhostDiv from '../GDiv'; //Same as Fragment, no need to create this wrapper, Fragment should be used.
 
 const Modal = ({ isActive, onClick, message }) => {
   const modalClass = `${styles.Modal} ${isActive && styles.active}`;
@@ -13,20 +14,20 @@ const Modal = ({ isActive, onClick, message }) => {
   const { title, msg } = modalMessage;
 
   return (
-    <Fragment>
+    <GhostDiv>
       <div className={modalClass}>
         {isActive && (
-          <Fragment>
+          <GhostDiv>
             <div className={styles.ModalTitle}>{title}</div>
             <div className={styles.ModalMessage}>{msg}</div>
             <div className={styles.ModalButtonArea}>
               <button onClick={onClick}>Close</button>
             </div>
-          </Fragment>
+          </GhostDiv>
         )}
       </div>
       {isActive && <Backdrop onClick={onClick} />}
-    </Fragment>
+    </GhostDiv>
   );
 };
 
