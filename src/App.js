@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './App.module.css';
-import Modal from './components/Modal/Modal';
+import ErrorModal from './components/Modal/ErrorModal';
 import UserForm from './components/Users/UserForm/UserForm';
 import UsersList from './components/Users/UsersList/UsersList';
 
@@ -35,7 +35,11 @@ const App = () => {
     <div className={styles.container}>
       <UserForm onSubmit={handleSubmit} />
       <UsersList userslist={users} onDelete={handleDelete} />
-      <Modal isActive={activeModal} message={message} onClick={closeModal} />
+      <ErrorModal
+        isActive={activeModal}
+        message={message}
+        onClick={closeModal}
+      />
     </div>
   );
 };

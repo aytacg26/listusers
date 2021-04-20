@@ -2,7 +2,6 @@
   width: 500px;
   max-width: 90vw;
   max-height: 400px;
-  margin: 0 auto;
   position: absolute;
   display: grid;
   grid-template-columns: 1fr;
@@ -12,6 +11,8 @@
   border: 2px solid purple;
   border-radius: 10px;
   top: 0;
+  left: 50%;
+  margin-left: -250px;
   margin-top: -400px;
   z-index: 10;
   box-shadow: 2px 2px 4px black;
@@ -78,3 +79,10 @@
     margin-top: -180px;
   }
 }
+
+@media (max-width: 600px) {
+  .Modal {
+    left: 50%;
+    margin-left: -45vw;
+  }
+} ;
